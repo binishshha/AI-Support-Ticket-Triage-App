@@ -18,16 +18,13 @@ class TicketAnalysis(BaseModel):
     """Structured analysis for one ticket."""
 
     reasoning: str = Field(
-        description="1-2 sentences quoting the words in the message that decide the urgency."
+        description="One concise sentence grounded in the ticket message."
     )
     category: Category
     urgency: Urgency
     sentiment: Sentiment
     confidence: Confidence
-    needs_human_review: bool
-    suggested_reply: str = ""
-    status: AnalysisStatus = "ok"
-    error: str | None = None
+    suggested_reply: str = Field(default="", max_length=600)
 
 
 class TicketResult(BaseModel):
@@ -37,10 +34,9 @@ class TicketResult(BaseModel):
     urgency: Urgency
     sentiment: Sentiment
     confidence: Confidence
-    needs_human_review: bool
-    suggested_reply: str
     status: AnalysisStatus
     error: str | None = None
+    suggested_reply: str = Field(default="", max_length=600)
 
 
 class BatchSummary(BaseModel):

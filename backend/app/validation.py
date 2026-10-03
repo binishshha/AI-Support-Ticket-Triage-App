@@ -1,17 +1,18 @@
 from fastapi import HTTPException
 
-try:
-    from ..schema import Ticket
-except ImportError:
-    from schema import Ticket
+from .schemas import Ticket
+
+MAX_TICKETS_PER_BATCH = 25
+MAX_TOTAL_CHARS = 25_000
 
 
 def validate_tickets(tickets: list[Ticket]) -> list[Ticket]:
     if not tickets:
         raise HTTPException(status_code=422, detail="At least one ticket is required.")
-    if len(tickets) > 50:
+    if len(tickets) > MAX_TICKETS_PER_BATCH:
         raise HTTPException(
-            status_code=422, detail="A maximum of 50 tickets is allowed."
+            status_code=422,
+            detail=f"A batch cannot contain more than {MAX_TICKETS_PER_BATCH} tickets.",
         )
 
     ids = [ticket.id for ticket in tickets]
@@ -26,4 +27,9 @@ def validate_tickets(tickets: list[Ticket]) -> list[Ticket]:
             raise HTTPException(
                 status_code=422, detail="Ticket messages cannot exceed 2000 characters."
             )
+    if sum(len(ticket.message) for ticket in tickets) > MAX_TOTAL_CHARS:
+        raise HTTPException(
+            status_code=422,
+            detail=f"Ticket messages cannot exceed {MAX_TOTAL_CHARS} characters combined.",
+        )
     return tickets

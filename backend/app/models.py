@@ -1,9 +1,6 @@
 from pydantic import BaseModel, ConfigDict
 
-try:
-    from ..schema import Ticket
-except ImportError:
-    from schema import Ticket
+from .schemas import Ticket
 
 
 class BatchRequest(BaseModel):
