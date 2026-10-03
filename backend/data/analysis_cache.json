@@ -239,11 +239,47 @@
       "status": "ok",
       "error": null,
       "suggested_reply": "Thank you for contacting us about your mother's missing data. Please provide the email address associated with the account and the device you are using so we can investigate this immediately."
+    },
+    {
+      "message_hash": "90862b0404dfc1a8d865c3e7ceae44688278fe3bcadb8fbdc4a887dcece1936e",
+      "id": 1,
+      "reasoning": "The user explicitly states that they are unable to open the app, preventing access to their caregiving tools.",
+      "category": "Technical",
+      "urgency": "High",
+      "sentiment": "Neutral",
+      "confidence": "High",
+      "status": "ok",
+      "error": null,
+      "suggested_reply": "Hello, thank you for reaching out. Could you please share what type of device you are using, the operating system version, and whether you are seeing any specific error messages when trying to open the app?"
+    },
+    {
+      "message_hash": "48fcdd48c8abe570516c34412708547554bf687011419b9e9c85141474d92c9d",
+      "id": 0,
+      "reasoning": "The user reports that their app is unable to load, which represents a technical disruption preventing app access.",
+      "category": "Technical",
+      "urgency": "High",
+      "sentiment": "Frustrated",
+      "confidence": "High",
+      "status": "ok",
+      "error": null,
+      "suggested_reply": "Hello, thank you for reaching out. We are sorry to hear that the app is not loading. Could you please share what device and operating system version you are using, and whether you are seeing any specific error messages?"
+    },
+    {
+      "message_hash": "18534f20cdefd8a173185cac64b4b352854d4e35963bb535e01389cfa0c52e56",
+      "id": 0,
+      "reasoning": "The user explicitly states that they are unable to open the app, preventing access to the service.",
+      "category": "Technical",
+      "urgency": "High",
+      "sentiment": "Neutral",
+      "confidence": "High",
+      "status": "ok",
+      "error": null,
+      "suggested_reply": "Hello, thank you for reaching out. We are sorry to hear that you cannot open the app. Could you please share the make and model of your device, your operating system version, and whether you see any error messages when opening the app?"
     }
   ],
   "summary": {
-    "total": 20,
-    "succeeded": 20,
+    "total": 23,
+    "succeeded": 23,
     "failed": 0,
     "duration_ms": 0
   }
