@@ -13,8 +13,15 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.tox/
+.nox/
 .coverage
+.coverage.*
 htmlcov/
+build/
+site/
+*.egg-info/
+pip-wheel-metadata/
 
 # Generated application cache and logs
 **/analysis_cache.json
