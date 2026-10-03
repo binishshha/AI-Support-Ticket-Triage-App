@@ -9,6 +9,7 @@
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+
   --ink: #20322e;
   --muted: #78857f;
   --line: #e5ebe6;
@@ -17,27 +18,106 @@
   --line-strong: #cbd6d0;
   --accent: #176b57;
   --accent-dark: #105541;
+  --accent-light: #e5f3ed;
+  --accent-hover: #228267;
+  --shadow: 0 8px 24px rgba(32, 50, 46, 0.08);
+  --shadow-hover: 0 12px 32px rgba(32, 50, 46, 0.14);
+
+  --transition-fast: 0.15s ease;
+  --transition: 0.25s ease;
 }
 
 * {
   box-sizing: border-box;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
   background: var(--canvas);
+  color: var(--ink);
   font-size: 1.0625rem;
+  transition:
+    background-color var(--transition),
+    color var(--transition);
 }
+
 button,
 input,
 select,
 textarea {
   font: inherit;
 }
+
 button {
   color: inherit;
+  cursor: pointer;
+  border: none;
+  transition:
+    background-color var(--transition),
+    color var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition-fast);
 }
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition:
+    color var(--transition-fast),
+    opacity var(--transition-fast);
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+input,
+select,
+textarea {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background-color var(--transition);
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: var(--line-strong);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(23, 107, 87, 0.1);
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
 button:focus-visible,
 input:focus-visible,
 select:focus-visible,
@@ -46,7 +126,167 @@ a:focus-visible {
   outline: 3px solid #80bba5;
   outline-offset: 2px;
 }
+
 ::selection {
   color: var(--ink);
   background: #cce9d9;
+}
+.card,
+.ticket-card,
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.card:hover,
+.ticket-card:hover,
+.panel:hover {
+  transform: translateY(-3px);
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-hover);
+}
+
+.btn,
+button.primary,
+button[type="submit"] {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  box-shadow: 0 4px 10px rgba(23, 107, 87, 0.12);
+}
+
+.btn:hover,
+button.primary:hover,
+button[type="submit"]:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 7px 16px rgba(23, 107, 87, 0.2);
+}
+
+.btn:active,
+button.primary:active,
+button[type="submit"]:active {
+  background: var(--accent-dark);
+}
+
+/* Secondary buttons */
+
+.btn-secondary,
+button.secondary {
+  background: var(--surface);
+  color: var(--accent);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+}
+
+.btn-secondary:hover,
+button.secondary:hover {
+  background: var(--accent-light);
+  border-color: var(--accent);
+}
+
+nav a {
+  position: relative;
+  color: var(--muted);
+  transition: color var(--transition-fast);
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width var(--transition);
+}
+
+nav a:hover::after,
+nav a.active::after {
+  width: 100%;
+}
+
+/* --------------------------------------------------
+   TICKET / LIST ITEMS
+-------------------------------------------------- */
+
+.ticket-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.ticket-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform var(--transition);
+}
+
+.ticket-card:hover::before {
+  transform: scaleY(1);
+}
+
+.ticket-card > p {
+  display: -webkit-box;
+  margin: 10px 0;
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+/* --------------------------------------------------
+   INTERACTIVE HOVER UTILITY
+-------------------------------------------------- */
+
+.interactive {
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: var(--line-strong);
+}
+
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
