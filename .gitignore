@@ -24,7 +24,6 @@ site/
 pip-wheel-metadata/
 
 # Generated application cache and logs
-**/analysis_cache.json
 *.log
 
 # Node and frontend build artifacts
