@@ -40,6 +40,7 @@ The inbox and existing analysis cache can be viewed without a live model call. C
 - **FastAPI + Pydantic**: typed request/response validation and small asynchronous JSON API for ticket data and batch analysis.
 - **Google Gemini (`google-genai`)**: produces the ticket triage fields and suggested agent replies in a structured response.
 - **Local JSON files**: sample tickets and content-hash analysis cache make the demo easy to run without a database. Successful analyses are reused for matching ticket text.
+- **Deployment: Vercel + Render**: `frontend/vercel.json` configures the React single-page app for Vercel and rewrites `/api/*` requests to the Render API at `ai-support-ticket-triage-app.onrender.com`. This keeps the frontend and API deployed separately while routing browser API calls through the frontend domain.
 - **Pytest / HTTPX and ESLint**: backend API checks and frontend static checks are available in the repo.
 
 ## Prompt and refinement
